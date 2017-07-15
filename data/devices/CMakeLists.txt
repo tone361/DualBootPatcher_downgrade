@@ -14,6 +14,7 @@ set(files
     elephone.yml
     gionee.yml
     google.yml
+    htc.yml
     huawei.yml
     infinix.yml
     jiayu.yml
