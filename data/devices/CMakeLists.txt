@@ -17,6 +17,7 @@ set(files
     infinix.yml
     jiayu.yml
     leeco.yml
+    leagoo.yml
     lenovo.yml
     lg.yml
     meizu.yml
