@@ -4,6 +4,8 @@
   codenames:
     - s8
     - lemon_s8
+    - Lemon_S8
+    - S8
   architecture: armeabi-v7a
 
   block_devs:
