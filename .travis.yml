@@ -35,8 +35,8 @@ before_install:
 script:
   - travis_wait 30
   - cd --
-  - git clone https://github.com/Parthib24/DualBootPatcher_downgrade Mysteryagr/DualBootPatcher/
-  - cd $PWD/Mysteryagr/DualBootPatcher/
+  - git clone https://github.com/Parthib24/DualBootPatcher_downgrade Parthib/DualBootPatcher/
+  - cd $PWD/Parthib/DualBootPatcher/
   - git submodule update --init --recursive
   - mkdir build
   - cd build/
@@ -45,14 +45,17 @@ script:
   - rm -rf assets && cpack -G TXZ
   - 2>/dev/null 1>&2 make apk
   - cd --
-  - export FILE=$PWD/Mysteryagr/DualBootPatcher/Android_GUI/build/outputs/apk/Android_GUI-debug.apk
-  - echo "  Uploading output to chunk.io"
+  - cd $PWD/Parthib/DualBootPatcher/Android_GUI/build/outputs/apk
+  - mv Android_GUI-debug.apk DPB-debug_$(date +%b-%d-%Y-%H:%M).apk
+  - cd --
+  - export FILE=$PWD/Parthib/DualBootPatcher/Android_GUI/build/outputs/apk/DPB-debug*
+  - echo "  Uploading output"
   - curl --upload-file $FILE https://transfer.sh
 
 deploy:
   provider: releases
   api_key: "$GIT_OAUTH_TOKEN_RAHMYAPK"
-  file: "$PWD/Mysteryagr/DualBootPatcher/Android_GUI/build/outputs/apk/Android_GUI-debug.apk"
+  file: "$PWD/Parthib/DualBootPatcher/Android_GUI/build/outputs/apk/DPB-debug*"
   skip_cleanup: true
   on:
     tags: true
