@@ -26,6 +26,7 @@ set(files
     maximus.yml
     micromax.yml
     meizu.yml
+    mobiistar.yml
     motorola.yml
     nokia.yml
     nexus.yml
