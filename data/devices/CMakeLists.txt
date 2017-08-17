@@ -23,6 +23,7 @@ set(files
     lemon.yml
     lenovo.yml
     lg.yml
+    maximus.yml
     micromax.yml
     meizu.yml
     motorola.yml
