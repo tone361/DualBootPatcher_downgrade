@@ -1,0 +1,26 @@
+---
+- name: Lemon S8
+  id: lemon_s8
+  codenames:
+    - s8
+    - lemon_s8
+  architecture: armeabi-v7a
+
+  block_devs:
+    base_dirs:
+      - /dev/block/platform/sdio_emmc/by-name
+    system:
+      - /dev/block/platform/sdio_emmc/by-name/system
+      - /dev/block/mmcblk0p17
+    cache:
+      - /dev/block/platform/sdio_emmc/by-name/cache
+      - /dev/block/mmcblk0p20
+    data:
+      - /dev/block/platform/sdio_emmc/by-name/userdata
+      - /dev/block/mmcblk0p23
+    boot:
+      - /dev/block/platform/sdio_emmc/by-name/boot
+      - /dev/block/mmcblk0p16
+    recovery:
+      - /dev/block/platform/sdio_emmc/by-name/recovery
+      - /dev/block/mmcblk0p21

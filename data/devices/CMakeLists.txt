@@ -20,6 +20,7 @@ set(files
     jiayu.yml
     leeco.yml
     leagoo.yml
+    lemon.yml
     lenovo.yml
     lg.yml
     micromax.yml
