@@ -245,3 +245,26 @@
       - /dev/block/platform/sdio_emmc/by-name/KERNEL
     recovery:
       - /dev/block/platform/sdio_emmc/by-name/RECOVERY
+
+- name: Samsung Galaxy J1 Mini
+  id: SM-J105H
+  codenames:
+    - j1mini3g
+    - j1mini3gxw
+    - J1MINI3G
+    - j105h
+  architecture: armeabi-v7a
+
+  block_devs:
+    base_dirs:
+      - /dev/block/platform/sdio_emmc/by-name
+    system:
+      - /dev/block/platform/sdio_emmc/by-name/SYSTEM
+    cache:
+      - /dev/block/platform/sdio_emmc/by-name/CACHE
+    data:
+      - /dev/block/platform/sdio_emmc/by-name/userdata
+    boot:
+      - /dev/block/platform/sdio_emmc/by-name/KERNEL
+    recovery:
+      - /dev/block/platform/sdio_emmc/by-name/RECOVERY
