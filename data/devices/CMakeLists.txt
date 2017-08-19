@@ -48,6 +48,7 @@ set(files
     symphony.yml
     umi.yml
     walton.yml
+    wiko.yml
     wileyfox.yml
     xiaomi.yml
     yu.yml
