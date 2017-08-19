@@ -51,7 +51,7 @@ script:
   - zip Unofficial-DBP_$(date +%b-%d-%Y-%H:%M).zip DBP-de* DBP-Ut*
   - cd --
   - export FILE=$PWD/Parthib/DualBootPatcher/Unofficial-DBP*
-  - echo "  Uploading output" & curl --upload-file $FILE https://transfer.sh
+  - echo "  Uploading output" && curl --upload-file $FILE https://transfer.sh
 
 deploy:
   provider: releases
