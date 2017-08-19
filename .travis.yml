@@ -44,13 +44,14 @@ script:
   - 2>/dev/null 1>&2 make
   - rm -rf assets && cpack -G TXZ
   - 2>/dev/null 1>&2 make apk
+  - make -C data/devices
+  - ./utilities/create.sh
+  - mv Android_GUI/build/outputs/apk/Android_GUI-debug.apk DPB-debug_$(date +%b-%d-%Y-%H:%M).apk
+  - mv utilities/DualBootUtilities*.zip DBP-Utilities_$(date +%b-%d-%Y-%H:%M).zip
+  - zip Unofficial-DBP_$(date +%b-%d-%Y-%H:%M).zip DBP-de* DBP-Ut*
   - cd --
-  - cd $PWD/Parthib/DualBootPatcher/Android_GUI/build/outputs/apk
-  - mv Android_GUI-debug.apk DPB-debug_$(date +%b-%d-%Y-%H:%M).apk
-  - cd --
-  - export FILE=$PWD/Parthib/DualBootPatcher/Android_GUI/build/outputs/apk/DPB-debug*
-  - echo "  Uploading output"
-  - curl --upload-file $FILE https://transfer.sh
+  - export FILE=$PWD/Parthib/DualBootPatcher/Unofficial-DBP*
+  - echo "  Uploading output" & curl --upload-file $FILE https://transfer.sh
 
 deploy:
   provider: releases
