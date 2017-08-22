@@ -98,3 +98,27 @@
       - /dev/block/platform/sdio_emmc/by-name/boot
     recovery:
       - /dev/block/platform/sdio_emmc/by-name/recovery
+
+- name: Walton Primo H6
+  id: Primo_H6
+  codenames:
+    - h6
+    - H6
+    - walton
+    - Primo_H6
+    - primo_h6
+  architecture: armeabi-v7a
+
+  block_devs:
+    base_dirs:
+      - /dev/block/platform/mtk-msdc.0/by-name
+    system:
+      - /dev/block/platform/mtk-msdc.0/by-name/system
+    cache:
+      - /dev/block/platform/mtk-msdc.0/by-name/cache
+    data:
+      - /dev/block/platform/mtk-msdc.0/by-name/userdata
+    boot:
+      - /dev/block/platform/mtk-msdc.0/by-name/boot
+    recovery:
+      - /dev/block/platform/mtk-msdc.0/by-name/recovery
