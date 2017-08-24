@@ -18,6 +18,7 @@ set(files
     huawei.yml
     infinix.yml
     jiayu.yml
+    lava.yml
     leeco.yml
     leagoo.yml
     lemon.yml
