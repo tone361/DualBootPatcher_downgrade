@@ -7,13 +7,14 @@ android:
   - platform-tools
   - tools
   - build-tools-25.0.2
-  - android-25
+  - android-23
 
 before_install:
   - sudo apt install ccache expect libboost-dev libjansson-dev libssl-dev libyaml-cpp-dev openssl python-minimal
   - cd --
+  - wget -q http://www.digip.org/jansson/releases/jansson-2.9.tar.gz && tar xzf jansson-2.9.tar.gz && cd jansson-2.9/ && ./configure && 2>/dev/null 1>&2 make && 2>/dev/null 1>&2 sudo make install && cd --
   - wget -q https://www.openssl.org/source/openssl-1.1.0c.tar.gz && tar xzf openssl-1.1.0c.tar.gz && cd openssl-1.1.0c && ./config shared --prefix=/usr/local/ssl --openssldir=/usr/local/ssl && 2>/dev/null 1>&2 make && 2>/dev/null 1>&2 sudo make install && export PATH=${PATH}:/usr/local/ssl && cd --
-  - wget -q https://cmake.org/files/v3.9/cmake-3.9.0.tar.gz && tar xzf cmake-3.9.0.tar.gz && mv cmake-3.9.0 cmake && cd cmake && sed -i 's|cmake_options="-DCMAKE_BOOTSTRAP=1"|cmake_options="-DCMAKE_BOOTSTRAP=1 -DCMAKE_USE_OPENSSL=ON"|' bootstrap && ./bootstrap && 2>/dev/null 1>&2 make && 2>/dev/null 1>&2 sudo make install && cd --
+  - wget -q https://cmake.org/files/v3.7/cmake-3.7.2.tar.gz && tar xzf cmake-3.7.2.tar.gz && mv cmake-3.7.2 cmake && cd cmake && sed -i 's|cmake_options="-DCMAKE_BOOTSTRAP=1"|cmake_options="-DCMAKE_BOOTSTRAP=1 -DCMAKE_USE_OPENSSL=ON"|' bootstrap && ./bootstrap && 2>/dev/null 1>&2 make && 2>/dev/null 1>&2 sudo make install && cd --
   - wget -q https://dl.google.com/android/repository/android-ndk-r15-linux-x86_64.zip && unzip -qq android-ndk-r15-linux-x86_64.zip && mv android-ndk-r15 android-ndk
   - export ANDROID_NDK_HOME=~/android-ndk
   - export ANDROID_NDK=~/android-ndk
@@ -34,21 +35,30 @@ before_install:
 script:
   - travis_wait 30
   - cd --
-  - git clone https://github.com/Mysteryagr/DualBootPatcher Mysteryagr/DualBootPatcher/
-  - cd $PWD/Mysteryagr/DualBootPatcher/
+  - git clone https://github.com/Parthib24/DualBootPatcher_downgrade Parthib/DualBootPatcher/
+  - cd $PWD/Parthib/DualBootPatcher/
   - git submodule update --init --recursive
   - mkdir build
   - cd build/
   - cmake .. -DMBP_BUILD_TARGET=android -DMBP_BUILD_TYPE=debug
-  - make
+  - 2>/dev/null 1>&2 make
   - rm -rf assets && cpack -G TXZ
-  - make apk
+  - 2>/dev/null 1>&2 make apk
+  - ./utilities/create.sh
   - cd --
+  - find ${PWD}/Parthib/DualBootPatcher -name "Android_GUI-debug.apk" -exec cp -f {} ${PWD}/Parthib/DualBootPatcher \;
+  - find ${PWD}/Parthib/DualBootPatcher -name "DualBootUtilities*.zip" -exec cp -f {} ${PWD}/Parthib/DualBootPatcher \;
+  - cd --
+  - cd $PWD/Parthib/DualBootPatcher/
+  - zip Unofficial-DBP_$(date +%b-%d-%Y-%H:%M).zip DualBootUtilities*.zip  Android_GUI-debug.apk
+  - cd --
+  - export FILE=$PWD/Parthib/DualBootPatcher/Unofficial-DBP*
+  - echo "  Uploading output" && curl --upload-file $FILE https://transfer.sh
 
 deploy:
   provider: releases
   api_key: "$GIT_OAUTH_TOKEN_RAHMYAPK"
-  file: "$PWD/Mysteryagr/DualBootPatcher/Android_GUI/build/outputs/apk/Android_GUI-debug.apk"
+  file: "$PWD/Parthib/DualBootPatcher/Unofficial-DBP*"
   skip_cleanup: true
   on:
     tags: true
