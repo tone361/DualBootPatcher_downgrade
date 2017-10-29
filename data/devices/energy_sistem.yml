@@ -1,6 +1,6 @@
 ---
 - name: Energy_Sistem Energy Phone Colors
-  id: Energy Phone Colors
+  id: Colors
   codenames:
       - Colors
       - Energy
