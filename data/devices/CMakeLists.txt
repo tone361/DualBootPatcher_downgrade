@@ -12,7 +12,7 @@ set(files
     dexp.yml
     doogee.yml
     elephone.yml
-    energy.yml
+    energy_system.yml
     gionee.yml
     google.yml
     htc.yml
